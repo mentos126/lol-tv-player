@@ -61,7 +61,7 @@ body {
 }
 
 .categories .category.selected {
-  background: rgb(209, 82, 35);
+  background: #d15223;
   color: #f1f1f1;
 }
 
@@ -92,6 +92,11 @@ body {
 .channel-list .channel:hover {
   background: #2c2b2b;
   color: #f1f1f1
+}
+
+.channel-list .channel.selected {
+  background: #d15223;
+  color: #f1f1f1;
 }
 
 .channel-list .channel img {

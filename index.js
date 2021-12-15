@@ -29,6 +29,9 @@ const showChannels = category => {
         source: channel.url,
         parentId: "#player"
       })
+      const $allChannels = document.querySelectorAll('.channel')
+      $allChannels.forEach(c => c.classList.remove('selected'))
+      $newChannel.classList.add('selected')
     })
   }
 
