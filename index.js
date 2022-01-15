@@ -12,6 +12,7 @@ const showChannels = category => {
     const $newChannel = document.createElement('div')
     $newChannel.classList.add('channel')
     const picture = document.createElement('img')
+    picture.setAttribute('loading', 'lazy')
     picture.onerror = function () {this.src='https://www.chanel.com/_ui/responsive/theme-onechanel/assets/media/favicon/192x192.png'}
     picture.src = channel.logo
     $newChannel.appendChild(picture)
@@ -71,17 +72,20 @@ const fetchChannels = async () => {
   const urlSearchParams = new URLSearchParams(window.location.search);
   const {lang, country} = Object.fromEntries(urlSearchParams.entries());
 
+  channels = channels.filter(c => (!c.categories.find(x => x.name === 'XXX')))
+
   filteredChannels = channels.filter(c => 
-    (lang && c.languages.find(x => x.code === lang)) ||
-    (country && c.countries.find(x => x.code === country))
+    (!c.categories.find(x => x.name === 'XXX')) &&
+    (
+      (lang && c.languages.find(x => x.code === lang)) ||
+      (country && c.countries.find(x => x.code === country))
+    )
   )
 
   if (!lang && !country) {
     filteredChannels = channels
   }
 
-  console.log(filteredChannels)
-  
   allCategories = filteredChannels.map(c => {
     if (c.categories[0]) {
       return c.categories[0].name
